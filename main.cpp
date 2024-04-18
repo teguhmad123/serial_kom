@@ -28,20 +28,19 @@ auto splitText(std::string text, char delimiter) -> std::vector<T>
   return tokens;
 }
 
-class Variabel
-{
-public:
-  std::string status;
-  std::vector<float> mpos;
-  std::vector<float> fs;
-  std::vector<float> wco;
-  std::vector<char> pn;
-  std::vector<float> ov;
-  std::vector<float> os;
-}
+// class Variabel
+// {
+// public:
+//   std::string status;
+//   std::vector<float> mpos;
+//   std::vector<float> fs;
+//   std::vector<float> wco;
+//   std::vector<char> pn;
+//   std::vector<float> ov;
+//   std::vector<float> os;
+// };
 
-int
-main()
+int main()
 {
   const char *portName = "/dev/ttyACM0"; // Replace with your serial port name
 
@@ -162,7 +161,7 @@ main()
           }
           else if (arrReceiveData[i].find("os:") != std::string::npos)
           {
-            os = splitText<float>(arrReceiveData[i].substr(3), ',');
+            std::vector<float> os = splitText<float>(arrReceiveData[i].substr(3), ',');
             Variabel::os.o = os[0];
             Variabel::os.s = os[1];
             std::cout << "os : " << Variabel::os.o << " " << Variabel::os.s << std::endl;
